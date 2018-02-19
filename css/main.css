@@ -22,6 +22,18 @@ body {
     display: flex;
     flex-grow: 1;
     margin: 1rem;
+}
+
+.graph {
+    display: flex;
+    flex-basis: 70%;
+    border: 1px solid black;
+    margin-right: 1rem;
+}
+
+.control-panel {
+    display: flex;
+    flex-basis: 30%;
     border: 1px solid black;
 }
 
@@ -58,7 +70,7 @@ body {
     background: #aeaeae;
 }
 
-#sidebar-toggler-left  {
+#sidebar-toggler-left {
     display: none;
 }
 
