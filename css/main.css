@@ -26,9 +26,17 @@ body {
 
 .graph {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-basis: 70%;
     border: 1px solid black;
     margin-right: 1rem;
+}
+
+.graph .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
 }
 
 .control-panel {
