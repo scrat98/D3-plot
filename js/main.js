@@ -1,3 +1,5 @@
+window.addEventListener("load", initGraph);
+
 let data = [];
 let svg;
 
@@ -6,8 +8,8 @@ function initGraph() {
         .attr("width", "95%")
         .attr("height", "95%");
 
-    document.getElementById("main-container").addEventListener("transitionend", updateGraph);
-    window.addEventListener("resize", updateGraph);
+    d3.select("window").on("resize", updateGraph);
+    d3.selectAll(".toggle").on("transitionend", updateGraph);
 
     let dataInput = document.getElementById("data-input");
     d3.select("#data-input")
@@ -25,7 +27,7 @@ function initGraph() {
 }
 
 function addPoint(x, y) {
-    if (!parseFloat(y)) {
+    if (!parseFloat(y) && parseFloat(y) !== 0) {
         return;
     }
 
@@ -40,11 +42,11 @@ function updateGraph() {
 
     let x_scale = d3.scaleTime()
         .domain(d3.extent(data, d => d.x))
-        .range([0, width]);
+        .range([32, width - 32]);
 
     let y_scale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.y)])
-        .range([height, 0]);
+        .domain(d3.extent(data, d => d.y))
+        .range([height - 32, 32]);
 
     let valueLine = d3.line()
         .x(d => x_scale(d.x))
@@ -72,5 +74,3 @@ function updateGraph() {
         .attr("class", "line")
         .attr("d", valueLine);
 }
-
-initGraph();
