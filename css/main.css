@@ -1,0 +1,94 @@
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    transition: 0.5s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex-grow: 1;
+    margin: 1rem;
+    border: 1px solid black;
+}
+
+/* Toggle */
+.toggle {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5vw 0 5vw 5vw;
+    border-color: transparent transparent transparent #007bff;
+}
+
+.toggle.left {
+    right: -5vw;
+    top: 50%;
+    transform: translateY(-100%) rotate(0);
+}
+
+.toggle.right {
+    left: -5vw;
+    top: 50%;
+    transform: translateY(-100%) rotate(180deg);
+}
+
+/* Sidebar left */
+.sidebar-left {
+    display: flex;
+    position: relative;
+    flex-basis: 0;
+    box-shadow: 6px 0 12px 0 rgba(0, 0, 0, 0.2), 6px 0 20px 0 rgba(0, 0, 0, 0.19);
+    background: #aeaeae;
+}
+
+#sidebar-toggler-left  {
+    display: none;
+}
+
+#sidebar-toggler-left:checked + .sidebar-left {
+    flex-basis: 15%;
+}
+
+#sidebar-toggler-left:checked + .sidebar-left > .toggle.left {
+    transform: translateY(-100%) rotate(180deg);
+    right: 0;
+}
+
+/* Sidebar right */
+.sidebar-right {
+    display: flex;
+    position: relative;
+    flex-basis: 0;
+    box-shadow: -6px 0 12px 0 rgba(0, 0, 0, 0.2), -6px 0 20px 0 rgba(0, 0, 0, 0.19);
+    background: #aeaeae;
+}
+
+#sidebar-toggler-right {
+    display: none;
+}
+
+#sidebar-toggler-right:checked + .sidebar-right {
+    flex-basis: 15%;
+}
+
+#sidebar-toggler-right:checked + .sidebar-right > .toggle.right {
+    transform: translateY(-100%) rotate(0);
+    left: 0;
+}
