@@ -5,11 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Js Siemens">
+    <meta name="description" content="JS Siemens">
     <meta name="author" content="scrat98">
-    <title>Js Siemens</title>
+    <title>JS Siemens</title>
 
     <link rel="stylesheet" href="css/main.css">
+    <script src="js/prefixfree.min.js"></script>
+    <script src="js/d3.min.js"></script>
 </head>
 <body>
 <input type="checkbox" id="sidebar-toggler-left">
@@ -20,7 +22,15 @@
 <main class="main-container" id="main-container">
     <div class="graph" id="graph"></div>
     <div class="control-panel">
-        <input id="data-input">
+        <div class="control-panel-header">
+            <h3 class="">Data</h3>
+            <input type="number" id="data-input">
+            <button id="data-clear">clear</button>
+        </div>
+        <div class="control-panel-actions">
+            <span>List of values</span>
+            <div class="values-container" id="values-container"></div>
+        </div>
     </div>
 </main>
 
@@ -29,7 +39,6 @@
     <label class="toggle right" for="sidebar-toggler-right"></label>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

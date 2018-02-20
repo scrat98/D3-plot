@@ -20,6 +20,14 @@ function initGraph() {
             }
         });
 
+    d3.select("#data-clear")
+        .on("click", () => {
+            data = [];
+            d3.selectAll(".value").remove();
+            dataInput.value = "";
+            updateGraph();
+        });
+
     svg.append("path")
         .attr("class", "line");
 
@@ -31,8 +39,40 @@ function addPoint(x, y) {
         return;
     }
 
-    data.push({x, y});
+    let point = {x: x, y: y};
+    data.push(point);
+    createValueContainer(point);
+
     updateGraph();
+}
+
+function createValueContainer(point) {
+    let time = point.x;
+
+    let container = document.getElementById("values-container");
+
+    let valueContainer = document.createElement("div");
+    valueContainer.className = "value";
+
+    let timeSpan = document.createElement("span");
+    timeSpan.textContent = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+    valueContainer.appendChild(timeSpan);
+
+    let valueSpan = document.createElement("span");
+    valueSpan.innerHTML = `<b>${point.y}</b>`;
+    valueContainer.appendChild(valueSpan);
+
+    let removeButton = document.createElement("input");
+    removeButton.type = "button";
+    removeButton.value = "Remove";
+    removeButton.onclick = () => {
+        data.splice(data.indexOf(point), 1);
+        container.removeChild(valueContainer);
+        updateGraph();
+    };
+    valueContainer.appendChild(removeButton);
+
+    container.appendChild(valueContainer);
 }
 
 function updateGraph() {
